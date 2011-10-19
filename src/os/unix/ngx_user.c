@@ -106,3 +106,45 @@ ngx_libc_crypt(ngx_pool_t *pool, u_char *key, u_char *salt, u_char **encrypted)
 #endif
 
 #endif /* NGX_CRYPT */
+
+
+ngx_uid_t
+ngx_uid_by_username(ngx_str_t * name)
+{
+	struct passwd * pwd = NULL;
+
+	pwd = getpwnam((const char*)name->data);
+	if(pwd) {
+		return pwd->pw_uid;
+	}
+
+	return -1;
+}
+
+
+ngx_gid_t
+ngx_gid_by_username(ngx_str_t * name)
+{
+	struct passwd * pwd = NULL;
+
+	pwd = getpwnam((const char*)name->data);
+	if(pwd) {
+		return pwd->pw_gid;
+	}
+
+	return -1;
+}
+
+
+ngx_gid_t
+ngx_gid_by_groupname(ngx_str_t * name)
+{
+	struct group * grp = NULL;
+
+	grp = getgrnam((const char*)name->data);
+	if(grp) {
+		return grp->gr_gid;
+	}
+
+	return -1;
+}

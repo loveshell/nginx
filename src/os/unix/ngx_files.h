@@ -160,6 +160,8 @@ ngx_int_t ngx_set_file_time(u_char *name, ngx_fd_t fd, time_t s);
 #define ngx_file_fs_size(sb)     ((sb)->st_blocks * 512)
 #define ngx_file_mtime(sb)       (sb)->st_mtime
 #define ngx_file_uniq(sb)        (sb)->st_ino
+#define ngx_file_uid(sb)		 (sb)->st_uid;
+#define ngx_file_gid(sb)		 (sb)->st_gid;
 
 
 ngx_int_t ngx_create_file_mapping(ngx_file_mapping_t *fm);
